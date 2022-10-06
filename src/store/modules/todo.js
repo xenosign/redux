@@ -51,20 +51,12 @@ export default function todo(state = initState, action) {
         }),
       };
     case DONE:
-      return {
-        ...state,
-        list: state.list.map((el) => {
-          if (el.id === action.id) {
-            return {
-              ...el,
-              done: true,
-            };
-          } else {
-            return el;
-          }
-        }),
-      };
+      return {};
     default:
       return state;
   }
 }
+
+// export default function todo(state = initState, action) {
+//   return state;
+// }

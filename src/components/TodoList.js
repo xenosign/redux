@@ -16,6 +16,7 @@ export default function TodoList() {
         <button
           onClick={() => {
             dispatch(create({ id: list.length, text: inputRef.current.value }));
+            inputRef.current.value = '';
           }}
         >
           추가
