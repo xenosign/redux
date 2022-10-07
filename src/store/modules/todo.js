@@ -38,6 +38,10 @@ const initState = {
   ],
 };
 
+let counts = initState.list.length;
+
+initState['nextID'] = counts;
+
 // 리듀서 설정(실제 작업은 이친구가 합니다!)
 export default function todo(state = initState, action) {
   switch (action.type) {
@@ -49,14 +53,23 @@ export default function todo(state = initState, action) {
           text: action.payload.text,
           done: false,
         }),
+        nextID: action.payload.id + 1,
       };
     case DONE:
-      return {};
+      return {
+        ...state,
+        list: state.list.map((el) => {
+          if (el.id === action.id) {
+            return {
+              ...el,
+              done: true,
+            };
+          } else {
+            return el;
+          }
+        }),
+      };
     default:
       return state;
   }
 }
-
-// export default function todo(state = initState, action) {
-//   return state;
-// }
